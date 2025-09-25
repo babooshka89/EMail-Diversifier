@@ -1,0 +1,8 @@
+Sehr geehrte Frau/geehrter Herr [NAME],
+
+dies ist eine kurze Vorlage. Hier steht noch nichts relevantes drin. Zweck dieses Dokuments ist es, die Funktionalität der Web-App zu prüfen.
+
+Danke für Ihre Aufmerksamkeit.
+
+Herzlichst,
+[DEIN NAME]
