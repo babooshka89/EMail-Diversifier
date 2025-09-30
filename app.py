@@ -13,7 +13,10 @@ st.markdown("""
     Das hier ist der originale Text:\n\n    
     """
 )
-st.text_area("", template, height=400, disabled=True)
+st.markdown(
+    f"<pre style='white-space: pre-wrap; word-wrap: break-word;'>{template}</pre>",
+    unsafe_allow_html=True
+)
 if st.button("Neue Version generieren"):
     
     new_template = generate_definition_gemini(template)
