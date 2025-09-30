@@ -6,15 +6,15 @@ st.session_state.page = "main_page"
 
 with open("vorlage.txt", "r") as vl:
     template = vl.read()
-st.markdown("""
+st.markdown(f"""
     # Herzlich Wilkommen!
             
     Du willst eine personalisierte E-Mail schreiben? Dann bist du bei unserem Tool hier richtig!\n\n
     Das hier ist der originale Text:\n\n
-            textgvvvvvvvvvvvvvvvvvvjm huvfzrgujio zutrfdsedtjio rserdtjio sertizoup9ü aw4e56r7it8oz9 serdtguz 
+    > {template} 
     """)
 
 if st.button("Neue Version generieren"):
     
     new_template = generate_definition_gemini(template)
-    st.write(new_template)
+    st.write("> " + new_template)
