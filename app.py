@@ -10,7 +10,7 @@ st.markdown("""
     # Herzlich Wilkommen!
             
     Du willst eine personalisierte E-Mail schreiben? Dann bist du bei unserem Tool hier richtig!\n\n
-        Das hier ist der originale Text:\n\n    
+    Das hier ist der originale Text:\n\n    
     """
 )
 st.markdown(template)
