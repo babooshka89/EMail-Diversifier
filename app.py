@@ -15,9 +15,10 @@ st.markdown("""
     Das hier ist der originale Text:\n\n
     """)
 
-st.markdown("> " + template_str)
-
 if st.button("Neue Version generieren"):
     
     new_template = generate_definition_gemini("\n".join(template))
-    st.write("> " + new_template)
+    st.markdown("> " + ">".join(new_template.split("\n")))
+
+else:
+    st.markdown("> " + template_str)
