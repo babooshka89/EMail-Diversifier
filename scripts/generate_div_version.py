@@ -5,10 +5,7 @@ import google.generativeai as genai
 
 def generate_definition_gemini(orig_text: str) -> dict:
 
-    with open("../../../../.api", 'r') as af:
-        api_keys = af.readlines()
-
-    api_key = api_keys[2].split('\t')[-1].strip() 
+    api_key = st.secrets["API_KEY"]
 
     genai.configure(api_key=api_key)
 
