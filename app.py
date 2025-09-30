@@ -13,7 +13,7 @@ st.markdown("""
     Das hier ist der originale Text:\n\n    
     """
 )
-st.code(template, language="")
+st.code(template, height=400)
 if st.button("Neue Version generieren"):
     
     new_template = generate_definition_gemini(template)
