@@ -13,7 +13,7 @@ st.markdown("""
     Das hier ist der originale Text:\n\n    
     """
 )
-markdown_str = f"   {template}"
+markdown_str = f"""   {template}"""
 st.markdown(markdown_str)
 if st.button("Neue Version generieren"):
     
