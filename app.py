@@ -13,10 +13,12 @@ st.markdown("""
     Das hier ist der originale Text:\n\n    
     """
 )
-st.markdown(
-    f"<pre style='white-space: pre-wrap; word-wrap: break-word;'>{template}</pre>",
-    unsafe_allow_html=True
-)
+st.markdown(f"""
+<div style="border:1px solid #ddd; border-radius:5px; padding:10px; background:#f7f7f7; font-family: monospace; white-space: pre-wrap; word-wrap: break-word;">
+  <button onclick="navigator.clipboard.writeText(`{template}`)" style="float:right; margin:2px;">Copy</button>
+  {template}
+</div>
+""", unsafe_allow_html=True)
 if st.button("Neue Version generieren"):
     
     new_template = generate_definition_gemini(template)
