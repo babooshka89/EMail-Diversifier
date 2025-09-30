@@ -5,7 +5,9 @@ from scripts.generate_div_version import generate_definition_gemini
 st.session_state.page = "main_page"
 
 with open("vorlage.txt", "r") as vl:
-    template = vl.read()
+    template = vl.readlines()
+template_str = "> ".join(template)
+
 st.markdown("""
     # Herzlich Wilkommen!
             
@@ -13,9 +15,9 @@ st.markdown("""
     Das hier ist der originale Text:\n\n
     """)
 
-st.markdown(">>>\n" + template + "\n>>>>")
+st.markdown()
 
 if st.button("Neue Version generieren"):
     
-    new_template = generate_definition_gemini(template)
+    new_template = generate_definition_gemini("\n".join(template))
     st.write("> " + new_template)
