@@ -13,7 +13,7 @@ st.markdown("""
     Das hier ist der originale Text:\n\n
     """)
 
-st.markdown("<blockquote>\n" + template + "\n</blockquote>")
+st.markdown(">>>\n" + template + "\n<<<<")
 
 if st.button("Neue Version generieren"):
     
