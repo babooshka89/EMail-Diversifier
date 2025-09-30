@@ -15,7 +15,7 @@ st.markdown("""
     Das hier ist der originale Text:\n\n
     """)
 
-st.markdown()
+st.markdown(template_str)
 
 if st.button("Neue Version generieren"):
     
