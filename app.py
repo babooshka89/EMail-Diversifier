@@ -18,7 +18,7 @@ st.markdown("""
 if st.button("Neue Version generieren"):
     
     new_template = generate_definition_gemini("\n".join(template))
-    st.markdown("> " + ">".join(new_template.split("\n")))
+    st.markdown("> " + "\n>".join(new_template.split("\n")))
 
 else:
     st.markdown("> " + template_str)
