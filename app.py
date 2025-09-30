@@ -6,13 +6,14 @@ st.session_state.page = "main_page"
 
 with open("vorlage.txt", "r") as vl:
     template = vl.read()
-st.markdown(f"""
+st.markdown("""
     # Herzlich Wilkommen!
             
     Du willst eine personalisierte E-Mail schreiben? Dann bist du bei unserem Tool hier richtig!\n\n
     Das hier ist der originale Text:\n\n
-    > {template} 
     """)
+
+st.markdown("> " + template)
 
 if st.button("Neue Version generieren"):
     
