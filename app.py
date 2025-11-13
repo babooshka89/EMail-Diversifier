@@ -7,6 +7,7 @@ with open("vorlage.txt", "r") as vl:
     template = vl.readlines()
 subject = template[0].strip()
 template_str = "> ".join(template[2:])
+new_template = "\n".join(template[2:])
 
 st.markdown("""
     # Herzlich Wilkommen!
