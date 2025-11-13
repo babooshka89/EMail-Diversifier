@@ -11,7 +11,8 @@ def generate_definition_gemini(orig_text: str) -> dict:
 
     model = genai.GenerativeModel("models/gemini-2.0-flash-lite", system_instruction="Du bist ein Assistent, der dabei helfen soll, eine E-Mail umzuschreiben um diverse Versionen desselben Inhalts zu bekommen.",)
 
-    prompt = "Formuliere die folgende E-Mail bitte um, sodass der Wortlaut abgeändert ist, aber der Inhalt gleich bleibt. Gebe als Antwort nur die geänderte E-Mail. Das hier ist die originale:\n"
+    prompt = "Formuliere die folgende E-Mail bitte um, sodass der Wortlaut abgeändert ist, aber der Inhalt gleich bleibt. Gebe als Antwort in der ersten Zeile den Betreff und ab der zweiten Zeile die E-Mail, nichts anderes. Das hier ist die originale:\n"
     response = model.generate_content(prompt + orig_text)
 
-    return response.text
+    subject, email = response.text.split("\n")[0], "\n".join(response.text.split("\n")[1:])
+    return subject, email
