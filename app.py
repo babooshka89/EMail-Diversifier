@@ -5,7 +5,7 @@ st.session_state.page = "main_page"
 
 with open("vorlage.txt", "r") as vl:
     template = vl.readlines()
-subject = template.split("\n")[0].strip()
+subject = template[0].strip()
 template_str = "> ".join(template[2:])
 
 st.markdown("""
