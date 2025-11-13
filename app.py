@@ -31,11 +31,10 @@ text_input = st.text_input(
     )
 
 mail_content = f"mailto:{text_input}?subject={subject}&body={new_template}"
-st.markdown(f"""
-<a href="{mail_content}" class="btn">Mail öffnen</a>
 
+st.markdown("""
 <style>
-.btn {{
+.btn {
   display: inline-block;
   padding: 8px 16px;
   background-color: #007bff;
@@ -43,9 +42,11 @@ st.markdown(f"""
   text-decoration: none;
   border-radius: 4px;
   font-family: sans-serif;
-}}
-.btn:hover {{
+}
+.btn:hover {
   background-color: #0056b3;
-}}
+}
 </style>
 """, unsafe_allow_html=True)
+
+st.markdown(f'<a href="{mail_content}" class="btn">Mail öffnen</a>', unsafe_allow_html=True)
