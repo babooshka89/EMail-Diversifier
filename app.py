@@ -1,4 +1,5 @@
 import streamlit as st
+import urllib.parse as up
 from scripts.generate_div_version import generate_definition_gemini
 
 st.session_state.page = "main_page"
@@ -30,7 +31,14 @@ text_input = st.text_input(
         placeholder=placeholder,
     )
 
-mail_content = f"mailto:{text_input}?subject={subject}&body={new_template}"
+# encode everything that goes into the URL
+mail_content = (
+    f"mailto:{text_input}"
+    f"?subject={up.quote(subject, safe='')}"
+    f"&body={up.quote(new_template, safe='')}"   # encodes quotes and newlines to %0A
+)
+
+# mail_content = f"mailto:{text_input}?subject={subject}&body={new_template}"
 
 st.markdown("""
 <style>
