@@ -3,7 +3,7 @@ import argparse, json, time
 import google.generativeai as genai
 
 
-def generate_definition_gemini(orig_text: str) -> dict:
+def generate_definition_gemini(orig_text: str, modifier: str) -> dict:
 
     api_key = st.secrets["API_KEY"]
 
