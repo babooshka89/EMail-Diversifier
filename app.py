@@ -24,7 +24,7 @@ with col1:
     if st.button("Neue Version generieren"):
         subject, new_template = generate_definition_gemini("\n".join(template))
         st.session_state.text = "changed"
-with col1:
+with col2:
     if st.button("Originalen Text anzeigen"):
         st.session_state.text = "original"
         new_template = original_str
