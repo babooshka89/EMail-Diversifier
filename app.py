@@ -22,8 +22,6 @@ if st.button("Neue Version generieren"):
     st.markdown("> " + "\n>".join(new_template.split("\n")))
 elif st.button("Originalen Text anzeigen"):
     st.markdown("> " + template_str)
-else:
-    st.markdown("> " + template_str)
 
 placeholder = "erika.mustermann@webmail.de"
 text_input = st.text_input(
