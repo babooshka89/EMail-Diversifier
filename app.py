@@ -21,7 +21,7 @@ st.markdown("""
 if st.button("Neue Version generieren"):
     subject, new_template = generate_definition_gemini("\n".join(template))
     st.session_state.text = "changed"
-elif st.button("Originalen Text anzeigen"):
+if st.button("Originalen Text anzeigen"):
     st.session_state.text = "original"
     new_template = original_str
 
