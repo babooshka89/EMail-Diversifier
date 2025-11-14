@@ -27,9 +27,12 @@ if st.button("Originalen Text anzeigen"):
 
 placeholder = "erika.mustermann@webmail.de"
 text_input = st.text_input(
-        "Deine Email-Adresse:",
+        "Deine E-Mail-Adresse:",
         placeholder=placeholder,
     )
+
+if text_input:
+    st.write("E-Mail-Adresse gespeichert")
 
 # encode everything that goes into the URL
 mail_content = (
