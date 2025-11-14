@@ -20,9 +20,9 @@ if st.button("Neue Version generieren"):
     
     subject, new_template = generate_definition_gemini("\n".join(template))
     st.markdown("> " + "\n>".join(new_template.split("\n")))
-else:
+elif st.button("Originalen Text anzeigen"):
     st.markdown("> " + template_str)
-if st.button("Originalen Text anzeigen"):
+else:
     st.markdown("> " + template_str)
 
 placeholder = "erika.mustermann@webmail.de"
