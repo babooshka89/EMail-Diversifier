@@ -18,12 +18,16 @@ st.markdown("""
     Du willst eine personalisierte E-Mail schreiben? Dann bist du bei unserem Tool hier richtig!\n\n
     """)
 
-if st.button("Neue Version generieren"):
-    subject, new_template = generate_definition_gemini("\n".join(template))
-    st.session_state.text = "changed"
-if st.button("Originalen Text anzeigen"):
-    st.session_state.text = "original"
-    new_template = original_str
+col1, col2 = st.columns(2)
+
+with col1:
+    if st.button("Neue Version generieren"):
+        subject, new_template = generate_definition_gemini("\n".join(template))
+        st.session_state.text = "changed"
+with col1:
+    if st.button("Originalen Text anzeigen"):
+        st.session_state.text = "original"
+        new_template = original_str
 
 if st.session_state.text == "changed":
     st.markdown("> " + "\n>".join(new_template.split("\n")))
