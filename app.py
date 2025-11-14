@@ -3,24 +3,31 @@ import urllib.parse as up
 from scripts.generate_div_version import generate_definition_gemini
 
 st.session_state.page = "main_page"
+st.session_state.text = "original"
 
 with open("vorlage.txt", "r") as vl:
     template = vl.readlines()
 subject = template[0].strip()
 template_str = "> ".join(template[2:])
+original_str = "\n".join(template[2:])
 new_template = "\n".join(template[2:])
 
 st.markdown("""
     # Herzlich Wilkommen!
-            
+
     Du willst eine personalisierte E-Mail schreiben? Dann bist du bei unserem Tool hier richtig!\n\n
     """)
 
 if st.button("Neue Version generieren"):
-    
     subject, new_template = generate_definition_gemini("\n".join(template))
-    st.markdown("> " + "\n>".join(new_template.split("\n")))
+    st.session_state.text = "changed"
 elif st.button("Originalen Text anzeigen"):
+    st.session_state.text = "original"
+    new_template = original_str
+
+if st.session_state.text == "changed":
+    st.markdown("> " + "\n>".join(new_template.split("\n")))
+else:
     st.markdown("> " + template_str)
 
 placeholder = "erika.mustermann@webmail.de"
