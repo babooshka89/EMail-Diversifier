@@ -54,10 +54,11 @@ st.markdown("""
   display: inline-block;
   padding: 8px 16px;
   background-color: #007bff;
-  color: white;
+  color: #ffffff !important;
   text-decoration: none;
   border-radius: 4px;
   font-family: sans-serif;
+  opacity: 1 !important;
 }
 .btn:hover {
   background-color: #0056b3;
