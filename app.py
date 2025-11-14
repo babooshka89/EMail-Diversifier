@@ -18,7 +18,7 @@ st.markdown("""
     Du willst eine personalisierte E-Mail schreiben? Dann bist du bei unserem Tool hier richtig!\n\n
     """)
 
-col = st.columns([0.5, 0.5],gap="small")
+col = st.columns([0.1, 0.1],gap="small")
 
 with col[0]:
     if st.button("Neue Version generieren"):
