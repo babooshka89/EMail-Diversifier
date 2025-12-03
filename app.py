@@ -1,9 +1,12 @@
 import streamlit as st
 import urllib.parse as up
 from scripts.generate_div_version import generate_definition_gemini
+from scripts.read_excel import get_email_dict
 
 st.session_state.page = "main_page"
 st.session_state.text = "original"
+
+email_dict = get_email_dict()
 
 with open("vorlage.txt", "r") as vl:
     template = vl.readlines()
@@ -34,40 +37,61 @@ if st.session_state.text == "changed":
 else:
     st.markdown("> " + template_str)
 
-placeholder = "erika.mustermann@webmail.de"
-text_input = st.text_input(
-        "Deine E-Mail-Adresse:",
-        placeholder=placeholder,
-    )
 
-if text_input:
-    st.write("E-Mail-Adresse gespeichert")
-
-# encode everything that goes into the URL
-mail_content = (
-    f"mailto:{text_input}"
-    f"?subject={up.quote(subject, safe='')}"
-    f"&body={up.quote(new_template, safe='')}"   # encodes quotes and newlines to %0A
+option = st.selectbox(
+    "Wem möchtest du eine E-Mail schreiben?",
+    list(email_dict.keys()),
+    index=None,
+    placeholder="Ausklappen zum Auswählen",
 )
 
-# mail_content = f"mailto:{text_input}?subject={subject}&body={new_template}"
 
-st.markdown("""
-<style>
-.btn {
-  display: inline-block;
-  padding: 8px 16px;
-  background-color: #007bff;
-  color: #ffffff !important;
-  text-decoration: none;
-  border-radius: 4px;
-  font-family: sans-serif;
-  opacity: 1 !important;
-}
-.btn:hover {
-  background-color: #0056b3;
-}
-</style>
-""", unsafe_allow_html=True)
+if option:
+    new_template = new_template.replace("[NAME]", option.split(" (")[0])
 
-st.markdown(f'<a href="{mail_content}" class="btn">Mail öffnen</a>', unsafe_allow_html=True)
+    # encode everything that goes into the URL
+    mail_content = (
+        f"mailto:{email_dict[option]}"
+        f"?subject={up.quote(subject, safe='')}"
+        f"&body={up.quote(new_template, safe='')}"   # encodes quotes and newlines to %0A
+    )
+
+    st.markdown("""
+    <style>
+    .btn {
+      display: inline-block;
+      padding: 8px 16px;
+      background-color: #007bff;
+      color: #ffffff !important;
+      text-decoration: none;
+      border-radius: 4px;
+      font-family: sans-serif;
+      opacity: 1 !important;
+    }
+    .btn:hover {
+      background-color: #0056b3;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+
+    st.markdown(f'<a href="{mail_content}" class="btn">Mail öffnen</a>', unsafe_allow_html=True)
+else:
+    st.markdown("""
+    <style>
+    .btn {
+      display: inline-block;
+      padding: 8px 16px;
+      background-color: #007bff;
+      color: #ffffff !important;
+      text-decoration: none;
+      border-radius: 4px;
+      font-family: sans-serif;
+      opacity: 0.5 !important;
+    }
+    .btn:hover {
+      background-color: #0056b3;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+
+    st.markdown(f'<a class="btn">Mail öffnen</a>', unsafe_allow_html=True)
