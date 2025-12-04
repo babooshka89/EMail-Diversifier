@@ -31,6 +31,6 @@ def get_email_dict():
     all_names.extend(names)
     all_emails.extend(email)
 
-    email_dict = {all_names[i]: all_emails[i] for i in range(len(names))}
+    email_dict = {all_names[i]: all_emails[i] for i in range(len(names)) if not "AFD" in all_names[i]}
 
     return email_dict
