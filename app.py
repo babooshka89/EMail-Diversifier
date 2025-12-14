@@ -55,7 +55,7 @@ if addressee == "circus":
     mail_content = (
             "mailto:circus.barnum@gmail.com"
             f"?subject={up.quote(subject, safe='')}"
-            "?bcc=info@veganvernetzt.de"
+            "&amp;bcc=info@veganvernetzt.de"
             f"&body={up.quote(new_template, safe='')}"   # encodes quotes and newlines to %0A
         )
     
@@ -124,8 +124,8 @@ elif addressee == "politics":
         mail_content = (
             f"mailto:{email_dict[option]}"
             f"?subject={up.quote(subject, safe='')}"
-            "?cc=circus.barnum@gmail.com"
-            "?bcc=info@veganvernetzt.de"
+            "&amp;cc=circus.barnum@gmail.com"
+            "&amp;bcc=info@veganvernetzt.de"
             f"&body={up.quote(new_template, safe='')}"   # encodes quotes and newlines to %0A
         )
 
