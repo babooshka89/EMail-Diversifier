@@ -5,15 +5,11 @@ import pandas as pd
 
 def get_email_dict():
     # Nextcloud credentials
-    # username = os.getenv("USERNAME") # "Laura Z"
-    username = "Laura Z" # "Laura Z"
-    # password = os.getenv("PASSWORD") # "Vbudapest2019V"
-    password = "Vbudapest2019V" # "Vbudapest2019V"
+    username = os.getenv("USERNAME") 
+    password = os.getenv("PASSWORD") 
 
     # WebDAV URL to your file
-    # url = os.getenv("URL") # "https://cloud.veganvernetzt.de/remote.php/dav/files/Laura Z/PT-Presse/Stadtrat25Mailadressen.ods"
-    url = "https://cloud.veganvernetzt.de/remote.php/dav/files/Laura Z/PT-Presse/Stadtrat25Mailadressen.ods" # "https://cloud.veganvernetzt.de/remote.php/dav/files/Laura Z/PT-Presse/Stadtrat25Mailadressen.ods"
-
+    url = os.getenv("URL")
     # Download from Nextcloud
     response = requests.get(url, auth=(username, password))
 
