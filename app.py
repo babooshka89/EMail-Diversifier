@@ -5,6 +5,7 @@ from scripts.read_excel import get_email_dict
 
 st.session_state.page = "main_page"
 st.session_state.text = "original"
+addressee = None
 
 st.markdown("""
     # Herzlich Wilkommen!
