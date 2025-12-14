@@ -35,13 +35,13 @@ if addressee == "circus":
     new_template = "\n".join(template[2:])
 
 
-    col = st.columns([0.3, 0.3, 0.4],gap="small")
+    circus_col = st.columns([0.3, 0.3, 0.4],gap="small")
 
-    with col[0]:
+    with circus_col[0]:
         if st.button("Neue Version generieren"):
             subject, new_template = generate_definition_gemini("\n".join(template))
             st.session_state.text = "changed"
-    with col[1]:
+    with circus_col[1]:
         if st.button("Originalen Text anzeigen"):
             st.session_state.text = "original"
             new_template = original_str
@@ -100,13 +100,13 @@ elif addressee == "politics":
     )
 
 
-    col = st.columns([0.3, 0.3, 0.4],gap="small")
+    politics_col = st.columns([0.3, 0.3, 0.4],gap="small")
     
-    with col[0]:
+    with politics_col[0]:
         if st.button("Neue Version generieren"):
             subject, new_template = generate_definition_gemini("\n".join(template))
             st.session_state.text = "changed"
-    with col[1]:
+    with politics_col[1]:
         if st.button("Originalen Text anzeigen"):
             st.session_state.text = "original"
             new_template = original_str
