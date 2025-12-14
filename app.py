@@ -97,14 +97,6 @@ elif st.session_state.addressee == "politics":
     original_str = "\n".join(template[2:])
     new_template = "\n".join(template[2:])
 
-    option = st.selectbox(
-        "Wem möchtest du eine E-Mail schreiben?",
-        list(email_dict.keys()),
-        index=None,
-        placeholder="Ausklappen zum Auswählen",
-    )
-
-
     politics_col = st.columns([0.3, 0.3, 0.4],gap="small")
     
     with politics_col[0]:
@@ -120,6 +112,14 @@ elif st.session_state.addressee == "politics":
         st.markdown("> " + "\n>".join(new_template.split("\n")))
     else:
         st.markdown("> " + template_str)
+
+
+    option = st.selectbox(
+        "Wem möchtest du eine E-Mail schreiben?",
+        list(email_dict.keys()),
+        index=None,
+        placeholder="Ausklappen zum Auswählen",
+    )
 
 
     if option:
