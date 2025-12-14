@@ -5,7 +5,14 @@ from scripts.read_excel import get_email_dict
 
 st.session_state.page = "main_page"
 st.session_state.text = "original"
-st.session_state.addressee = ""
+if 'addressee' not in st.session_state:
+    st.session_state.addressee = False
+
+def click_button_circus():
+    st.session_state.addressee = "circus"
+
+def click_button_politics():
+    st.session_state.addressee = "politics"
 
 st.markdown("""
     # Herzlich Wilkommen!
@@ -17,12 +24,10 @@ st.markdown("""
 col = st.columns([0.3, 0.4, 0.3],gap="small")
 
 with col[0]:
-    if st.button("Dem Zirkus"):
-        st.session_state.addressee = "circus"
+    st.button("Dem Zirkus", on_click=click_button_circus)
 
 with col[1]:
-    if st.button("Einer Politikerin/einem Politiker"):
-        st.session_state.addressee = "politics"
+    if st.button("Einer Politikerin/einem Politiker", on_click=click_button_politics)
 
 
 if st.session_state.addressee == "circus":
