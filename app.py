@@ -13,43 +13,121 @@ st.markdown("""
     Wem möchtest du schreiben?
     """)
 
-col = st.columns([0.3, 0.3, 0.4],gap="small")
+col = st.columns([0.3, 0.4, 0.3],gap="small")
 
 with col[0]:
     if st.button("Dem Zirkus"):
-        with open("vorlage_zirkus.txt", "r") as vl:
-            template = vl.readlines()
+        addressee = "circus"
 
-        subject = template[0].strip()
-        template_str = "> ".join(template[2:])
-        original_str = "\n".join(template[2:])
-        new_template = "\n".join(template[2:])
+with col[1]:
+    if st.button("Einer Politikerin/einem Politiker"):
+        addressee = "politics"
 
 
-        col = st.columns([0.3, 0.3, 0.4],gap="small")
+if addressee == "circus":
+    with open("vorlage_zirkus.txt", "r") as vl:
+        template = vl.readlines()
 
-        with col[0]:
-            if st.button("Neue Version generieren"):
-                subject, new_template = generate_definition_gemini("\n".join(template))
-                st.session_state.text = "changed"
-        with col[1]:
-            if st.button("Originalen Text anzeigen"):
-                st.session_state.text = "original"
-                new_template = original_str
+    subject = template[0].strip()
+    template_str = "> ".join(template[2:])
+    original_str = "\n".join(template[2:])
+    new_template = "\n".join(template[2:])
 
-        if st.session_state.text == "changed":
-            st.markdown("> " + "\n>".join(new_template.split("\n")))
-        else:
-            st.markdown("> " + template_str)
 
-        
+    col = st.columns([0.3, 0.3, 0.4],gap="small")
+
+    with col[0]:
+        if st.button("Neue Version generieren"):
+            subject, new_template = generate_definition_gemini("\n".join(template))
+            st.session_state.text = "changed"
+    with col[1]:
+        if st.button("Originalen Text anzeigen"):
+            st.session_state.text = "original"
+            new_template = original_str
+
+    if st.session_state.text == "changed":
+        st.markdown("> " + "\n>".join(new_template.split("\n")))
+    else:
+        st.markdown("> " + template_str)
+
+    
+    mail_content = (
+            "mailto:circus.barnum@gmail.com"
+            f"?subject={up.quote(subject, safe='')}"
+            "?bcc=info@veganvernetzt.de"
+            f"&body={up.quote(new_template, safe='')}"   # encodes quotes and newlines to %0A
+        )
+    
+    st.markdown("""
+    <style>
+    .btn {
+      display: inline-block;
+      padding: 8px 16px;
+      background-color: #007bff;
+      color: #ffffff !important;
+      text-decoration: none;
+      border-radius: 4px;
+      font-family: sans-serif;
+      opacity: 1 !important;
+    }
+    .btn:hover {
+      background-color: #0056b3;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+
+    st.markdown(f'<a href="{mail_content}" class="btn">Mail öffnen</a>', unsafe_allow_html=True)
+
+
+elif addressee == "politics":
+
+    with open("vorlage_politik.txt", "r") as vl:
+        template = vl.readlines()
+
+    email_dict = get_email_dict()
+
+    subject = template[0].strip()
+    template_str = "> ".join(template[2:])
+    original_str = "\n".join(template[2:])
+    new_template = "\n".join(template[2:])
+
+    option = st.selectbox(
+        "Wem möchtest du eine E-Mail schreiben?",
+        list(email_dict.keys()),
+        index=None,
+        placeholder="Ausklappen zum Auswählen",
+    )
+
+
+    col = st.columns([0.3, 0.3, 0.4],gap="small")
+    
+    with col[0]:
+        if st.button("Neue Version generieren"):
+            subject, new_template = generate_definition_gemini("\n".join(template))
+            st.session_state.text = "changed"
+    with col[1]:
+        if st.button("Originalen Text anzeigen"):
+            st.session_state.text = "original"
+            new_template = original_str
+    
+    if st.session_state.text == "changed":
+        st.markdown("> " + "\n>".join(new_template.split("\n")))
+    else:
+        st.markdown("> " + template_str)
+
+
+    if option:
+        new_template = new_template.replace("[NAME]", option.split(" (")[0])
+
+        # encode everything that goes into the URL
         mail_content = (
-                "mailto:circus.barnum@gmail.com"
-                f"?subject={up.quote(subject, safe='')}"
-                "?bcc=info@veganvernetzt.de"
-                f"&body={up.quote(new_template, safe='')}"   # encodes quotes and newlines to %0A
-            )
-        
+            f"mailto:{email_dict[option]}"
+            f"?subject={up.quote(subject, safe='')}"
+            "?cc=circus.barnum@gmail.com"
+            "?bcc=info@veganvernetzt.de"
+            f"&body={up.quote(new_template, safe='')}"   # encodes quotes and newlines to %0A
+        )
+
         st.markdown("""
         <style>
         .btn {
@@ -67,95 +145,25 @@ with col[0]:
         }
         </style>
         """, unsafe_allow_html=True)
-    
+
         st.markdown(f'<a href="{mail_content}" class="btn">Mail öffnen</a>', unsafe_allow_html=True)
+    else:
+        st.markdown("""
+        <style>
+        .btn {
+          display: inline-block;
+          padding: 8px 16px;
+          background-color: #007bff;
+          color: #ffffff !important;
+          text-decoration: none;
+          border-radius: 4px;
+          font-family: sans-serif;
+          opacity: 0.5 !important;
+        }
+        .btn:hover {
+          background-color: #0056b3;
+        }
+        </style>
+        """, unsafe_allow_html=True)
 
-
-with col[1]:
-    if st.button("Einer Politikerin/einem Politiker"):
-        with open("vorlage_politik.txt", "r") as vl:
-            template = vl.readlines()
-
-        email_dict = get_email_dict()
-
-        subject = template[0].strip()
-        template_str = "> ".join(template[2:])
-        original_str = "\n".join(template[2:])
-        new_template = "\n".join(template[2:])
-
-        option = st.selectbox(
-            "Wem möchtest du eine E-Mail schreiben?",
-            list(email_dict.keys()),
-            index=None,
-            placeholder="Ausklappen zum Auswählen",
-        )
-
-
-        col = st.columns([0.3, 0.3, 0.4],gap="small")
-        
-        with col[0]:
-            if st.button("Neue Version generieren"):
-                subject, new_template = generate_definition_gemini("\n".join(template))
-                st.session_state.text = "changed"
-        with col[1]:
-            if st.button("Originalen Text anzeigen"):
-                st.session_state.text = "original"
-                new_template = original_str
-        
-        if st.session_state.text == "changed":
-            st.markdown("> " + "\n>".join(new_template.split("\n")))
-        else:
-            st.markdown("> " + template_str)
-
-
-        if option:
-            new_template = new_template.replace("[NAME]", option.split(" (")[0])
-
-            # encode everything that goes into the URL
-            mail_content = (
-                f"mailto:{email_dict[option]}"
-                f"?subject={up.quote(subject, safe='')}"
-                "?cc=circus.barnum@gmail.com"
-                "?bcc=info@veganvernetzt.de"
-                f"&body={up.quote(new_template, safe='')}"   # encodes quotes and newlines to %0A
-            )
-
-            st.markdown("""
-            <style>
-            .btn {
-              display: inline-block;
-              padding: 8px 16px;
-              background-color: #007bff;
-              color: #ffffff !important;
-              text-decoration: none;
-              border-radius: 4px;
-              font-family: sans-serif;
-              opacity: 1 !important;
-            }
-            .btn:hover {
-              background-color: #0056b3;
-            }
-            </style>
-            """, unsafe_allow_html=True)
-
-            st.markdown(f'<a href="{mail_content}" class="btn">Mail öffnen</a>', unsafe_allow_html=True)
-        else:
-            st.markdown("""
-            <style>
-            .btn {
-              display: inline-block;
-              padding: 8px 16px;
-              background-color: #007bff;
-              color: #ffffff !important;
-              text-decoration: none;
-              border-radius: 4px;
-              font-family: sans-serif;
-              opacity: 0.5 !important;
-            }
-            .btn:hover {
-              background-color: #0056b3;
-            }
-            </style>
-            """, unsafe_allow_html=True)
-
-            st.markdown(f'<a class="btn">Mail öffnen</a>', unsafe_allow_html=True)
+        st.markdown(f'<a class="btn">Mail öffnen</a>', unsafe_allow_html=True)
