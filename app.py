@@ -5,7 +5,7 @@ from scripts.read_excel import get_email_dict
 
 st.session_state.page = "main_page"
 st.session_state.text = "original"
-addressee = None
+st.session_state.addressee = ""
 
 st.markdown("""
     # Herzlich Wilkommen!
@@ -18,14 +18,14 @@ col = st.columns([0.3, 0.4, 0.3],gap="small")
 
 with col[0]:
     if st.button("Dem Zirkus"):
-        addressee = "circus"
+        st.session_state.addressee = "circus"
 
 with col[1]:
     if st.button("Einer Politikerin/einem Politiker"):
-        addressee = "politics"
+        st.session_state.addressee = "politics"
 
 
-if addressee == "circus":
+if st.session_state.addressee == "circus":
     with open("vorlage_zirkus.txt", "r") as vl:
         template = vl.readlines()
 
@@ -80,7 +80,7 @@ if addressee == "circus":
     st.markdown(f'<a href="{mail_content}" class="btn">Mail öffnen</a>', unsafe_allow_html=True)
 
 
-elif addressee == "politics":
+elif st.session_state.addressee == "politics":
 
     with open("vorlage_politik.txt", "r") as vl:
         template = vl.readlines()
