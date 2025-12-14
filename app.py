@@ -27,7 +27,7 @@ with col[0]:
     st.button("Dem Zirkus", on_click=click_button_circus)
 
 with col[1]:
-    if st.button("Einer Politikerin/einem Politiker", on_click=click_button_politics)
+    st.button("Einer Politikerin/einem Politiker", on_click=click_button_politics)
 
 
 if st.session_state.addressee == "circus":
