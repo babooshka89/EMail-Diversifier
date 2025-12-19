@@ -15,10 +15,17 @@ def click_button_politics():
     st.session_state.addressee = "politics"
 
 st.markdown("""
-    # Herzlich Wilkommen!
+    # E-Mails gegen Tierzirkusse
+    
+    In Nürnberg gastiert derzeit erneut der Circus Barnum. Viele Menschen möchten ihre Haltung zu Tierauftritten und der vermeidbaren Nutzung fühlender Lebewesen zur bloßen Unterhaltung äußern oder die lokale Politik darauf aufmerksam machen, dass zeitgemäße Formen des Zirkus längst ohne Tiere auskommen.
 
-    Du willst eine personalisierte E-Mail schreiben? Dann bist du bei unserem Tool hier richtig!\n\n
-    Wem möchtest du schreiben?
+    Lasst uns gemeinsam ein Zeichen setzen und dafür sorgen, dass solche veralteten Praktiken in unserer Stadt keinen Platz mehr haben! Zeigen wir, dass dieses Thema vielen Bürger:innen am Herzen liegt.
+    Mithilfe dieser Seite kannst du ganz einfach eine E-Mail an den Zirkus selbst oder an Politiker:innen im Stadtrat Nürnberg verfassen und abschicken. 
+
+    Damit du nicht selber lange überlegen musst, was du schreiben möchtest, haben wir Vorlagen erstellt, die du nutzen kannst. Du kannst den Text außerdem mithilfe des KI-gestützten Generators ein wenig umschreiben lassen. So bekommen die Empfänger:innen viele individuelle Nachrichten und nicht immer denselben Text zugeschickt. Du kannst den Text in deinem E-Mail-Programm natürlich auch noch weiter anpassen, bevor du die Mail abschickst.
+    Achte bitte darauf, Kritik stets respektvoll und sachlich zu äußern. Höflich formulierte Nachrichten werden eher gelesen, ernst genommen und können mehr bewirken als scharfe Töne.\n\n
+            
+    ### Danke für dein Engagement! Wem möchtest du schreiben?
     """)
 
 col = st.columns([0.3, 0.4, 0.3],gap="small")
