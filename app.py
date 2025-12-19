@@ -25,7 +25,7 @@ st.markdown("""
     Damit du nicht selber lange überlegen musst, was du schreiben möchtest, haben wir Vorlagen erstellt, die du nutzen kannst. Du kannst den Text außerdem mithilfe des KI-gestützten Generators ein wenig umschreiben lassen. So bekommen die Empfänger:innen viele individuelle Nachrichten und nicht immer denselben Text zugeschickt. Du kannst den Text in deinem E-Mail-Programm natürlich auch noch weiter anpassen, bevor du die Mail abschickst.
     Achte bitte darauf, Kritik stets respektvoll und sachlich zu äußern. Höflich formulierte Nachrichten werden eher gelesen, ernst genommen und können mehr bewirken als scharfe Töne.\n\n
             
-    ### Danke für dein Engagement! 
+    Danke für dein Engagement! 
     ### Wem möchtest du schreiben?
     """)
 
