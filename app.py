@@ -32,10 +32,10 @@ st.markdown("""
 col = st.columns([0.3, 0.4, 0.3],gap="small")
 
 with col[0]:
-    st.button("Dem Zirkus", on_click=click_button_circus)
+    st.button("Mail an Circus Barnum", on_click=click_button_circus)
 
 with col[1]:
-    st.button("Einer Politikerin/einem Politiker", on_click=click_button_politics)
+    st.button("Mail an Politiker:innen der Stadt Nürnberg", on_click=click_button_politics)
 
 
 if st.session_state.addressee == "circus":
